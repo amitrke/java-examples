@@ -13,6 +13,7 @@
     <modules>
         <module>WebApp</module>
         <module>FileUpload</module>
+        <module>CharacterOccurrances</module>
     </modules>
     
 </project>
