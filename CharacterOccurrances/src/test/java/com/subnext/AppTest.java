@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.Map;
+
 /**
  * Unit test for simple App.
  */
@@ -34,5 +36,20 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+
+    public void testFindOccurances(){
+        App app = new App();
+        //Test for a normal String
+        Map<Character, Integer> data = app.findOccurances("This is a sample String");
+        assertNotNull(data);
+        assertEquals(new Integer(2), data.get(new Character('a')));
+
+        //Test for a null
+        assertNotNull(app.findOccurances(null));
+
+        //Test for a string without chars
+        assertNotNull(app.findOccurances(""));
+
     }
 }
