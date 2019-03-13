@@ -1,0 +1,6 @@
+rootProject.name = 'java-examples'
+include ':CharacterOccurances'
+include ':InterviewTests'
+
+project(':CharacterOccurances').projectDir = "$rootDir/CharacterOccurrances" as File
+project(':InterviewTests').projectDir = "$rootDir/InterviewTests" as File
