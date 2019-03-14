@@ -7,7 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PassingCodeTest{
 
@@ -27,5 +29,23 @@ public class PassingCodeTest{
     public void testFilter(){
         List<Apple> greenApples = PassingCode.filterApples(this.inventory, PassingCode::isGreenApple);
         Assert.assertEquals(3, greenApples.size());
+    }
+
+    @Test
+    public void testLambda(){
+        List<Apple> greenApples =  PassingCode.filterApples(this.inventory, (Apple a) -> "Green".equals(a.getColor()));
+        Assert.assertEquals(3, greenApples.size());
+        List<Apple> redApples = PassingCode.filterApples(this.inventory, (Apple a) -> "Red".equals(a.getColor()));
+        Assert.assertEquals(2, redApples.size());
+    }
+
+    @Test
+    public void testStream(){
+        List<Apple> greenApples = this.inventory.stream()
+                .filter((Apple a) -> "Green".equals(a.getColor()))
+                .sorted(Comparator.comparing(Apple::getWeight))
+                .collect(Collectors.toList());
+        Assert.assertEquals(3, greenApples.size());
+        Assert.assertTrue(greenApples.get(0).getWeight() < greenApples.get(2).getWeight());
     }
 }
